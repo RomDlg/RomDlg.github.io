@@ -4,6 +4,12 @@
    Portfolio v4 — « Affiche » : chaque écran est un poster.
    Noir / blanc / fluo, scroll aimanté, entrées chorégraphiées,
    mockups à ombres dures.
+
+   Échelle : une affiche grandit d'un bloc. Tout est exprimé en rem
+   et la racine devient fluide au-delà de 1700px (voir la couche
+   « grand écran » en bas de fichier) — les proportions réglées au
+   pixel près sur portable sont donc conservées telles quelles,
+   simplement plus grandes sur un 27"/32".
    ========================================================= */
 
 :root{
@@ -12,7 +18,7 @@
   --body:"Archivo",system-ui,sans-serif;
   --disp:"Archivo Black",Impact,sans-serif;
   --ease:cubic-bezier(0.22,1,0.36,1);
-  --gut:clamp(20px,4.5vw,60px);
+  --gut:clamp(1.25rem,4.5vw,3.75rem);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0}
 /* Tailwind preflight neutralise le gras des titres ; la maquette
@@ -25,7 +31,7 @@ html{-webkit-text-size-adjust:100%}
 }
 body{
   background:var(--noir);color:var(--blanc);
-  font-family:var(--body);font-size:16.5px;line-height:1.55;
+  font-family:var(--body);font-size:1.03125rem;line-height:1.55;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 a{color:inherit;text-decoration:none}
@@ -36,12 +42,12 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
 
 /* ---------------- dots nav ---------------- */
 .dots{
-  position:fixed;right:18px;top:50%;translate:0 -50%;z-index:100;
-  display:flex;flex-direction:column;gap:12px;
+  position:fixed;right:1.125rem;top:50%;translate:0 -50%;z-index:100;
+  display:flex;flex-direction:column;gap:.75rem;
 }
 .dots a{
-  width:9px;height:9px;border-radius:50%;
-  border:1.5px solid currentColor;opacity:.45;
+  width:.5625rem;height:.5625rem;border-radius:50%;
+  border:.09375rem solid currentColor;opacity:.45;
   transition:opacity .25s,transform .25s,background .25s,color .4s;
   color:var(--blanc);
 }
@@ -54,17 +60,25 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
 .poster{
   min-height:100svh;position:relative;overflow:hidden;
   display:flex;flex-direction:column;justify-content:center;
-  padding:clamp(70px,10vh,110px) var(--gut);
-  border-bottom:2px solid currentColor;
+  padding:clamp(4.375rem,10vh,6.875rem) var(--gut);
+  border-bottom:.125rem solid currentColor;
+}
+/* zone de composition : bornée en largeur pour que les filets et les
+   grilles ne s'étirent pas au-delà de leur contenu. Les repères de coin
+   restent, eux, collés au bord de feuille. */
+.sheet{
+  display:flex;flex-direction:column;justify-content:center;
+  width:100%;max-width:none;margin-inline:auto;
+  position:relative;z-index:1;
 }
 .poster .corner{
   position:absolute;z-index:2;font-family:var(--mono);font-size:.62rem;
   letter-spacing:.16em;text-transform:uppercase;opacity:.6;
 }
-.poster .corner.tl{top:20px;left:var(--gut)}
-.poster .corner.tr{top:20px;right:var(--gut);text-align:right}
-.poster .corner.bl{bottom:18px;left:var(--gut)}
-.poster .corner.br{bottom:18px;right:var(--gut);text-align:right}
+.poster .corner.tl{top:1.25rem;left:var(--gut)}
+.poster .corner.tr{top:1.25rem;right:var(--gut);text-align:right}
+.poster .corner.bl{bottom:1.125rem;left:var(--gut)}
+.poster .corner.br{bottom:1.125rem;right:var(--gut);text-align:right}
 /* mobile : un seul libellé par bord, sinon ils se chevauchent */
 @media(max-width:640px){
   .poster .corner.tr,.poster .corner.bl{display:none}
@@ -77,7 +91,7 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
 .poster .ghost{
   position:absolute;right:-.05em;bottom:-.14em;z-index:0;
   font-family:var(--disp);font-size:clamp(13rem,40vw,40rem);line-height:1;
-  color:transparent;-webkit-text-stroke:1.5px currentColor;opacity:.13;
+  color:transparent;-webkit-text-stroke:.09375rem currentColor;opacity:.13;
   pointer-events:none;user-select:none;
 }
 
@@ -97,26 +111,32 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
   position:relative;z-index:1;
 }
 .hero-name .solid{display:block}
-.hero-name .out{display:block;color:transparent;-webkit-text-stroke:2.5px var(--blanc)}
+/* Archivo Black n'existe qu'en une graisse : `font-weight:bold` déclenche un
+   faux-gras, que le navigateur fabrique en décalant une seconde copie du
+   glyphe. Sur un texte plein ça épaissit (effet voulu) ; sur un texte évidé
+   ça dessine DEUX contours au lieu d'un. On coupe donc la synthèse sur les
+   mots au filet — visible dès 240px, criant à 400px. */
+.hero-name .out,.contactP h2 .out2{font-weight:400;font-synthesis-weight:none}
+.hero-name .out{display:block;color:transparent;-webkit-text-stroke:.15625rem var(--blanc)}
 .hero-name .fluo{display:block;color:var(--fluo)}
 .hero-strip{
-  margin-top:clamp(24px,4vh,44px);display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;
-  border-top:2px solid var(--blanc);padding-top:18px;position:relative;z-index:1;
+  margin-top:clamp(1.5rem,4vh,2.75rem);display:flex;justify-content:space-between;align-items:center;gap:1.125rem;flex-wrap:wrap;
+  border-top:.125rem solid var(--blanc);padding-top:1.125rem;position:relative;z-index:1;
 }
 .hero-strip p{max-width:46ch;font-weight:500;font-size:1rem;text-wrap:pretty}
-.hero-strip .stats{display:flex;gap:26px;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}
+.hero-strip .stats{display:flex;gap:1.625rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}
 .hero-strip .stats b{color:var(--fluo);font-size:1rem}
 .avail-strip{
-  display:inline-flex;align-items:center;gap:.7em;margin-top:20px;
+  display:inline-flex;align-items:center;gap:.7em;margin-top:1.25rem;
   font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;
-  border:1.5px solid var(--blanc);padding:.6em 1.1em;position:relative;z-index:1;align-self:flex-start;
+  border:.09375rem solid var(--blanc);padding:.6em 1.1em;position:relative;z-index:1;align-self:flex-start;
 }
-.avail-strip i{width:7px;height:7px;border-radius:50%;background:var(--fluo);animation:led 1.8s ease infinite}
+.avail-strip i{width:.4375rem;height:.4375rem;border-radius:50%;background:var(--fluo);animation:led 1.8s ease infinite}
 @keyframes led{50%{opacity:.25}}
 
 /* ---------------- posters projets ---------------- */
 .proj-grid{
-  display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(26px,4vw,60px);
+  display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(1.625rem,4vw,4.75rem);
   align-items:center;position:relative;z-index:1;
 }
 .proj-grid > *{min-width:0}
@@ -124,27 +144,27 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
 .proj h2{
   font-family:var(--disp);text-transform:uppercase;
   font-size:min(clamp(2.8rem,7vw,8rem),22vh);
-  line-height:.86;letter-spacing:-0.02em;margin-top:16px;
+  line-height:.86;letter-spacing:-0.02em;margin-top:1rem;
 }
 .proj .tagline{
   font-family:var(--disp);text-transform:uppercase;font-size:clamp(1rem,2.2vw,1.55rem);
-  margin-top:14px;letter-spacing:.01em;color:var(--fluo);
+  margin-top:.875rem;letter-spacing:.01em;color:var(--fluo);
 }
 .p-fluo .tagline{color:var(--blanc)}
 .proj .status{
   display:inline-flex;align-items:center;gap:.7em;
   font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
-  border:1.5px solid currentColor;padding:.6em 1.1em;margin-top:20px;
+  border:.09375rem solid currentColor;padding:.6em 1.1em;margin-top:1.25rem;
 }
-.proj .status i{width:7px;height:7px;border-radius:50%;background:currentColor;animation:led 1.8s ease infinite}
+.proj .status i{width:.4375rem;height:.4375rem;border-radius:50%;background:currentColor;animation:led 1.8s ease infinite}
 .proj .row{
-  margin-top:clamp(20px,3.5vh,36px);border-top:2px solid currentColor;padding-top:18px;
+  margin-top:clamp(1.25rem,3.5vh,2.25rem);border-top:.125rem solid currentColor;padding-top:1.125rem;
 }
 .proj .row p{max-width:52ch;font-weight:500;font-size:.99rem;text-wrap:pretty}
 .p-noir .row p b{color:var(--noir);background:var(--fluo);padding:0 .18em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .p-blanc .row p b{color:var(--blanc);background:var(--noir);padding:0 .18em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-.proj .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase}
-.proj .chips span{border:1.5px solid currentColor;padding:.5em 1em;transition:background .2s,color .2s}
+.proj .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase}
+.proj .chips span{border:.09375rem solid currentColor;padding:.5em 1em;transition:background .2s,color .2s}
 .p-noir .chips span:hover{background:var(--blanc);color:var(--noir)}
 .p-blanc .chips span:hover{background:var(--noir);color:var(--blanc)}
 .proj-media{display:flex;align-items:center;justify-content:center;min-width:0}
@@ -157,76 +177,76 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
 /* ================= MOCKUPS — ombres dures ================= */
 /* téléphone (Écurie) */
 .mock-phone{
-  width:min(230px,70vw);aspect-ratio:230/470;border-radius:34px;padding:9px;
-  background:#101010;border:2px solid var(--noir);
-  box-shadow:12px 12px 0 var(--fluo);
+  width:min(14.375rem,70vw);aspect-ratio:230/470;border-radius:2.125rem;padding:.5625rem;
+  background:#101010;border:.125rem solid var(--noir);
+  box-shadow:.75rem .75rem 0 var(--fluo);
   rotate:2deg;
 }
 .p-noir .mock-phone{border-color:var(--blanc)}
-.mock-phone .screen{position:relative;height:100%;border-radius:26px;overflow:hidden;background:#141414;color:var(--blanc)}
-.mock-phone .notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:76px;height:17px;background:#000;border-radius:11px;z-index:5}
-.mock-phone .app-top{padding:30px 14px 10px;display:flex;align-items:center;justify-content:space-between}
+.mock-phone .screen{position:relative;height:100%;border-radius:1.625rem;overflow:hidden;background:#141414;color:var(--blanc)}
+.mock-phone .notch{position:absolute;top:.5rem;left:50%;transform:translateX(-50%);width:4.75rem;height:1.0625rem;background:#000;border-radius:.6875rem;z-index:5}
+.mock-phone .app-top{padding:1.875rem .875rem .625rem;display:flex;align-items:center;justify-content:space-between}
 .mock-phone .app-top .t{font-family:var(--disp);font-size:.92rem;letter-spacing:.02em;text-transform:uppercase}
-.mock-phone .app-top .av{width:23px;height:23px;border-radius:50%;background:#2A2A2A;border:1px solid rgba(255,255,255,.2)}
-.mock-phone .listing{padding:4px 10px 10px;display:grid;gap:8px}
-.mock-phone .lcard{border:1px solid rgba(255,255,255,.16);border-radius:10px;overflow:hidden;background:rgba(255,255,255,.04)}
-.mock-phone .lcard .lph{height:66px;background:repeating-linear-gradient(-45deg,rgba(255,255,255,.07) 0 9px,transparent 9px 18px)}
-.mock-phone .lcard .meta{padding:7px 9px 9px}
+.mock-phone .app-top .av{width:1.4375rem;height:1.4375rem;border-radius:50%;background:#2A2A2A;border:.0625rem solid rgba(255,255,255,.2)}
+.mock-phone .listing{padding:.25rem .625rem .625rem;display:grid;gap:.5rem}
+.mock-phone .lcard{border:.0625rem solid rgba(255,255,255,.16);border-radius:.625rem;overflow:hidden;background:rgba(255,255,255,.04)}
+.mock-phone .lcard .lph{height:4.125rem;background:repeating-linear-gradient(-45deg,rgba(255,255,255,.07) 0 .5625rem,transparent .5625rem 1.125rem)}
+.mock-phone .lcard .meta{padding:.4375rem .5625rem .5625rem}
 .mock-phone .lcard .h{font-size:.68rem;font-weight:700}
-.mock-phone .lcard .s{font-size:.58rem;opacity:.55;margin-top:2px}
-.mock-phone .lcard .price{font-family:var(--mono);font-size:.64rem;color:var(--fluo);margin-top:5px}
+.mock-phone .lcard .s{font-size:.58rem;opacity:.55;margin-top:.125rem}
+.mock-phone .lcard .price{font-family:var(--mono);font-size:.64rem;color:var(--fluo);margin-top:.3125rem}
 
 /* fenêtre (Scaffolder) */
 .mock-win{
-  width:min(470px,100%);
-  border:2px solid var(--blanc);background:#111;color:var(--blanc);
-  box-shadow:12px 12px 0 var(--fluo);
+  width:min(29.375rem,100%);
+  border:.125rem solid var(--blanc);background:#111;color:var(--blanc);
+  box-shadow:.75rem .75rem 0 var(--fluo);
   rotate:-1.2deg;
 }
 .p-blanc .mock-win{border-color:var(--noir)}
-.mock-win .bar2{display:flex;align-items:center;gap:14px;padding:10px 14px;border-bottom:2px solid rgba(244,242,237,.16)}
-.mock-win .traffic{display:flex;gap:7px}
-.mock-win .traffic i{width:10px;height:10px;border-radius:50%;background:#3A3A3A;display:block}
+.mock-win .bar2{display:flex;align-items:center;gap:.875rem;padding:.625rem .875rem;border-bottom:.125rem solid rgba(244,242,237,.16)}
+.mock-win .traffic{display:flex;gap:.4375rem}
+.mock-win .traffic i{width:.625rem;height:.625rem;border-radius:50%;background:#3A3A3A;display:block}
 .mock-win .url{font-family:var(--mono);font-size:.62rem;opacity:.55;white-space:nowrap}
-.mock-win .body2{padding:15px;display:grid;gap:10px}
-.mock-win .task{display:flex;align-items:center;gap:11px;padding:10px 12px;border:1px solid rgba(244,242,237,.18)}
-.mock-win .task .box{width:15px;height:15px;border:2px solid rgba(244,242,237,.4);flex:none}
+.mock-win .body2{padding:.9375rem;display:grid;gap:.625rem}
+.mock-win .task{display:flex;align-items:center;gap:.6875rem;padding:.625rem .75rem;border:.0625rem solid rgba(244,242,237,.18)}
+.mock-win .task .box{width:.9375rem;height:.9375rem;border:.125rem solid rgba(244,242,237,.4);flex:none}
 .mock-win .task.done .box{background:var(--fluo);border-color:var(--fluo)}
 .mock-win .task .tx{flex:1;min-width:0}
 .mock-win .task .h{font-size:.78rem;font-weight:600}
-.mock-win .task .s{font-size:.62rem;opacity:.55;margin-top:1px}
-.mock-win .who{font-family:var(--mono);font-size:.56rem;padding:2px 7px}
+.mock-win .task .s{font-size:.62rem;opacity:.55;margin-top:.0625rem}
+.mock-win .who{font-family:var(--mono);font-size:.56rem;padding:.125rem .4375rem}
 .mock-win .who.ai{color:var(--noir);background:var(--fluo)}
-.mock-win .who.you{opacity:.7;border:1px solid rgba(244,242,237,.3)}
-.mock-win .mcp{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(244,242,237,.07);border:1px dashed rgba(244,242,237,.3)}
-.mock-win .mcp .pulse{width:8px;height:8px;border-radius:50%;background:var(--fluo);flex:none;animation:led 1.6s ease infinite}
+.mock-win .who.you{opacity:.7;border:.0625rem solid rgba(244,242,237,.3)}
+.mock-win .mcp{display:flex;align-items:center;gap:.625rem;padding:.625rem .75rem;background:rgba(244,242,237,.07);border:.0625rem dashed rgba(244,242,237,.3)}
+.mock-win .mcp .pulse{width:.5rem;height:.5rem;border-radius:50%;background:var(--fluo);flex:none;animation:led 1.6s ease infinite}
 .mock-win .mcp .mt{font-size:.7rem}
 .mock-win .mcp .mt b{color:var(--fluo);font-weight:700}
 
 /* notch + terminal (SmartNotch) */
-.mock-notch{width:min(450px,100%);rotate:1.2deg}
-.mock-notch .macbar{position:relative;height:28px;background:#101010;border:2px solid var(--noir);border-top:none;border-radius:0 0 14px 14px;display:flex;align-items:center;justify-content:center}
-.mock-notch .real-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:146px;height:22px;background:#000;border-radius:0 0 11px 11px;display:flex;align-items:center;justify-content:center;gap:7px}
-.mock-notch .dotA{width:6px;height:6px;border-radius:50%;background:var(--fluo)}
-.mock-notch .dotB{width:6px;height:6px;border-radius:50%;background:#F4F2ED}
+.mock-notch{width:min(28.125rem,100%);rotate:1.2deg}
+.mock-notch .macbar{position:relative;height:1.75rem;background:#101010;border:.125rem solid var(--noir);border-top:none;border-radius:0 0 .875rem .875rem;display:flex;align-items:center;justify-content:center}
+.mock-notch .real-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:9.125rem;height:1.375rem;background:#000;border-radius:0 0 .6875rem .6875rem;display:flex;align-items:center;justify-content:center;gap:.4375rem}
+.mock-notch .dotA{width:.375rem;height:.375rem;border-radius:50%;background:var(--fluo)}
+.mock-notch .dotB{width:.375rem;height:.375rem;border-radius:50%;background:#F4F2ED}
 .mock-notch .mini{font-family:var(--mono);font-size:.5rem;color:#CFCFCF;letter-spacing:.08em;white-space:nowrap}
-.mock-notch .term{margin-top:14px;border:2px solid var(--noir);background:#111;color:var(--blanc);box-shadow:12px 12px 0 var(--fluo)}
+.mock-notch .term{margin-top:.875rem;border:.125rem solid var(--noir);background:#111;color:var(--blanc);box-shadow:.75rem .75rem 0 var(--fluo)}
 .p-noir .mock-notch .term{border-color:var(--blanc)}
-.mock-notch .thead{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-bottom:2px solid rgba(244,242,237,.16)}
+.mock-notch .thead{display:flex;align-items:center;justify-content:space-between;padding:.5625rem .75rem;border-bottom:.125rem solid rgba(244,242,237,.16)}
 .mock-notch .thead .ttl{font-family:var(--mono);font-size:.6rem;opacity:.55;letter-spacing:.06em}
-.mock-notch .thead .ag{display:flex;gap:6px}
-.mock-notch .thead .ag i{width:7px;height:7px;border-radius:50%;display:block}
-.mock-notch .agents{padding:10px 12px;display:grid;gap:8px}
-.mock-notch .agent{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.64rem}
-.mock-notch .agent .st{width:7px;height:7px;border-radius:50%;flex:none}
+.mock-notch .thead .ag{display:flex;gap:.375rem}
+.mock-notch .thead .ag i{width:.4375rem;height:.4375rem;border-radius:50%;display:block}
+.mock-notch .agents{padding:.625rem .75rem;display:grid;gap:.5rem}
+.mock-notch .agent{display:flex;align-items:center;gap:.625rem;font-family:var(--mono);font-size:.64rem}
+.mock-notch .agent .st{width:.4375rem;height:.4375rem;border-radius:50%;flex:none}
 .mock-notch .agent .st.run{background:var(--fluo);animation:led 1.6s ease infinite}
 .mock-notch .agent .st.wait{background:#FFE81F}
 .mock-notch .agent .st.idle{background:rgba(244,242,237,.3)}
 .mock-notch .agent .ds{opacity:.5;margin-left:auto}
 .mock-notch .agent .ds.q{color:#FFE81F;opacity:.95}
-.mock-notch .tfoot{padding:9px 12px;border-top:2px solid rgba(244,242,237,.16);font-family:var(--mono);font-size:.64rem;display:flex;align-items:center;gap:8px}
+.mock-notch .tfoot{padding:.5625rem .75rem;border-top:.125rem solid rgba(244,242,237,.16);font-family:var(--mono);font-size:.64rem;display:flex;align-items:center;gap:.5rem}
 .mock-notch .tfoot .pmt{color:var(--fluo)}
-.mock-notch .tfoot .cur{width:7px;height:13px;background:var(--fluo);animation:blink 1.05s steps(2) infinite}
+.mock-notch .tfoot .cur{width:.4375rem;height:.8125rem;background:var(--fluo);animation:blink 1.05s steps(2) infinite}
 @keyframes blink{50%{opacity:0}}
 
 /* ---------------- manifeste ---------------- */
@@ -237,14 +257,14 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
   max-width:18ch;position:relative;z-index:1;
 }
 .manif h2 .inv{color:var(--blanc)}
-.manif .sub{margin-top:26px;max-width:52ch;font-weight:500;position:relative;z-index:1}
+.manif .sub{margin-top:1.625rem;max-width:52ch;font-weight:500;position:relative;z-index:1}
 .manif .marq{position:absolute;inset-inline:0;bottom:7vh;overflow:hidden;pointer-events:none}
 .manif .marq.off{display:none}
 .manif .marq .track{display:flex;width:max-content;animation:mq 20s linear infinite}
 .manif .marq .u{
   font-family:var(--disp);text-transform:uppercase;white-space:nowrap;
   font-size:clamp(1.4rem,3vw,2.6rem);letter-spacing:.02em;padding-right:.6em;
-  color:transparent;-webkit-text-stroke:1.2px var(--noir);
+  color:transparent;-webkit-text-stroke:.075rem var(--noir);
 }
 @keyframes mq{to{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){.manif .marq .track{animation:none}}
@@ -252,13 +272,13 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
 /* ---------------- profil + stack ---------------- */
 .profil-head{
   display:flex;align-items:center;justify-content:space-between;
-  gap:clamp(20px,4vw,50px);position:relative;z-index:1;
+  gap:clamp(1.25rem,4vw,3.125rem);position:relative;z-index:1;
 }
 /* portrait carré, cadre noir + ombre dure comme les mockups */
 .profil .portrait{
-  flex:none;width:clamp(110px,16vw,210px);height:auto;
-  border:2px solid var(--noir);
-  box-shadow:12px 12px 0 var(--fluo);
+  flex:none;width:clamp(6.875rem,16vw,13.125rem);height:auto;
+  border:.125rem solid var(--noir);
+  box-shadow:.75rem .75rem 0 var(--fluo);
   rotate:2deg;
 }
 .profil h2{
@@ -267,16 +287,16 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
   line-height:.94;letter-spacing:-0.015em;max-width:22ch;position:relative;z-index:1;
 }
 .profil h2 b{color:var(--fluo);font-weight:400}
-.profil .lead2{margin-top:20px;max-width:56ch;font-weight:500;position:relative;z-index:1;text-wrap:pretty}
-.stack-table{margin-top:clamp(24px,4vh,40px);position:relative;z-index:1;border-top:2px solid currentColor}
+.profil .lead2{margin-top:1.25rem;max-width:56ch;font-weight:500;position:relative;z-index:1;text-wrap:pretty}
+.stack-table{margin-top:clamp(1.5rem,4vh,2.5rem);position:relative;z-index:1;border-top:.125rem solid currentColor}
 .stack-row{
-  display:grid;grid-template-columns:200px 1fr;gap:14px;align-items:baseline;
-  padding:12px 0;border-bottom:1px solid color-mix(in srgb,currentColor 30%,transparent);
+  display:grid;grid-template-columns:12.5rem 1fr;gap:.875rem;align-items:baseline;
+  padding:.75rem 0;border-bottom:.0625rem solid color-mix(in srgb,currentColor 30%,transparent);
 }
 .stack-row .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--fluo)}
-.stack-row .v{font-weight:600;font-size:.96rem;display:flex;flex-wrap:wrap;gap:4px 0}
+.stack-row .v{font-weight:600;font-size:.96rem;display:flex;flex-wrap:wrap;gap:.25rem 0}
 .stack-row .v span+span::before{content:"·";margin-inline:.5em;opacity:.4;font-weight:400}
-@media(max-width:700px){.stack-row{grid-template-columns:1fr;gap:4px}}
+@media(max-width:700px){.stack-row{grid-template-columns:1fr;gap:.25rem}}
 
 /* ---------------- missions ---------------- */
 .miss h2{
@@ -286,16 +306,16 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
 }
 .miss h2 b{color:var(--fluo);font-weight:400}
 .miss-grid{
-  display:grid;grid-template-columns:1fr 1fr;border:2px solid currentColor;
-  margin-top:clamp(24px,4.5vh,44px);position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;border:.125rem solid currentColor;
+  margin-top:clamp(1.5rem,4.5vh,2.75rem);position:relative;z-index:1;
 }
-.miss-step{padding:clamp(18px,2.6vw,32px);border:1px solid color-mix(in srgb,currentColor 35%,transparent);transition:background .25s,color .25s}
+.miss-step{padding:clamp(1.125rem,2.6vw,2rem);border:.0625rem solid color-mix(in srgb,currentColor 35%,transparent);transition:background .25s,color .25s}
 .p-fluo .miss-step:hover{background:var(--noir);color:var(--blanc)}
 .p-noir .miss-step:hover{background:var(--blanc);color:var(--noir)}
 .miss-step .n{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;color:var(--fluo)}
-.miss-step h3{font-family:var(--disp);text-transform:uppercase;font-size:clamp(1.1rem,2vw,1.6rem);margin-top:10px;letter-spacing:0}
-.miss-step p{font-size:.9rem;font-weight:500;opacity:.8;margin-top:8px}
-.miss-promises{display:flex;gap:12px 30px;flex-wrap:wrap;margin-top:20px;font-size:.9rem;font-weight:600;position:relative;z-index:1}
+.miss-step h3{font-family:var(--disp);text-transform:uppercase;font-size:clamp(1.1rem,2vw,1.6rem);margin-top:.625rem;letter-spacing:0}
+.miss-step p{font-size:.9rem;font-weight:500;opacity:.8;margin-top:.5rem}
+.miss-promises{display:flex;gap:.75rem 1.875rem;flex-wrap:wrap;margin-top:1.25rem;font-size:.9rem;font-weight:600;position:relative;z-index:1}
 .p-fluo .miss-promises b{background:var(--noir);color:var(--fluo);padding:0 .3em}
 .p-noir .miss-promises b{background:var(--fluo);color:var(--noir);padding:0 .3em}
 @media(max-width:700px){.miss-grid{grid-template-columns:1fr}}
@@ -308,14 +328,62 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
 }
 .contactP h2 a{display:inline-block;transition:transform .35s var(--ease)}
 .contactP h2 a:hover{transform:translateX(.05em)}
-.contactP h2 .out2{color:transparent;-webkit-text-stroke:2.5px var(--noir)}
-.contactP .mail{margin-top:26px;font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;position:relative;z-index:1}
-.contactP .mail a{border-bottom:2px solid var(--noir)}
+.contactP h2 .out2{color:transparent;-webkit-text-stroke:.15625rem var(--noir)}
+.contactP .mail{margin-top:1.625rem;font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;position:relative;z-index:1}
+.contactP .mail a{border-bottom:.125rem solid var(--noir)}
 .contactP .mail .note{opacity:.55;margin-left:.8em}
 .contactP .footer{
-  margin-top:clamp(40px,7vh,70px);border-top:2px solid var(--noir);padding-top:16px;
-  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  margin-top:clamp(2.5rem,7vh,4.375rem);border-top:.125rem solid var(--noir);padding-top:1rem;
+  display:flex;justify-content:space-between;gap:.875rem;flex-wrap:wrap;
   font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;position:relative;z-index:1;
+}
+
+/* =========================================================
+   GRAND ÉCRAN (≥ 1700px) — 27", 32", 5K/6K
+   Sous ce seuil, rien ne bouge : le rendu portable est intact.
+   Au-dessus, la racine devient fluide (tout le système en rem
+   grandit d'un bloc) et quelques grilles se redéploient pour
+   occuper la largeur au lieu de l'étirer.
+   ========================================================= */
+@media(min-width:1700px){
+  /* 16px à 1700 → 24px à 3500. `rem` sur :root = préférence
+     navigateur de l'utilisateur, donc le réglage d'accessibilité
+     « taille de police » reste respecté. */
+  html{font-size:clamp(1rem,0.535vw + 0.43rem,1.5rem)}
+
+  /* la feuille : ~100 cadratins de large, comme un empagement d'imprimeur */
+  .sheet{max-width:100rem}
+
+  /* Les titres d'affiche sont réglés en vw — c'est la règle « une ligne
+     traverse la feuille ». Les plafonds en rem servaient de garde-fou sur
+     écran moyen ; ici on les relève pour laisser le vw reprendre la main.
+     Le second terme (vh) reste : il empêche un titre de déborder en hauteur
+     sur une fenêtre large mais basse. */
+  .hero-name{font-size:min(clamp(4rem,15vw,21rem),25vh)}
+  /* Le titre projet partage sa ligne avec le mockup : il se mesure donc à sa
+     colonne (cqi), pas au viewport — sinon « SCAFFOLDER », le plus long des
+     trois, déborde et passe sous la fenêtre. */
+  .proj-grid{grid-template-columns:1.15fr .85fr}
+  .proj-grid > :first-child{container-type:inline-size}
+  /* 13.5cqi : « SCAFFOLDER », le titre le plus long, mesure 7,19 cadratins —
+     au-delà il sort de sa colonne et passe sous le mockup. */
+  .proj h2{font-size:min(clamp(2.8rem,7vw,11rem),24vh,13.5cqi)}
+  .manif h2{font-size:min(clamp(2.2rem,6.6vw,9rem),28vh)}
+  .profil h2{font-size:min(clamp(1.9rem,5vw,7rem),22vh)}
+  .miss h2{font-size:min(clamp(2.2rem,6vw,8rem),20vh)}
+  .contactP h2{font-size:min(clamp(3rem,12vw,17rem),36vh)}
+
+  /* les mockups sont la charge visuelle des posters projet :
+     ils grandissent plus vite que le texte pour tenir la colonne */
+  .mock-phone{width:min(19rem,70vw)}
+  .mock-win{width:min(34rem,100%)}
+  .mock-notch{width:min(34rem,100%)}
+
+  /* deux colonnes plutôt que six filets de 2000px pour 400px de texte */
+  .stack-table{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(50px,4vw,100px)}
+
+  /* les 4 étapes sont une séquence : en ligne, elle se lit comme une frise */
+  .miss-grid{grid-template-columns:repeat(4,1fr)}
 }
 
 @media(prefers-reduced-motion:reduce){

@@ -50,6 +50,9 @@ export default function Home() {
         ))}
       </nav>
 
+      {/* Les `.corner` et `.ghost` restent hors de `.sheet` : ce sont les repères
+          du bord de feuille, ils suivent le viewport. `.sheet` porte la
+          composition, bornée en largeur pour rester lisible sur grand écran. */}
       <main>
         {/* ============ 01 · HERO ============ */}
         <section className="poster p-noir" id="p1" data-screen-label="Hero">
@@ -57,29 +60,31 @@ export default function Home() {
           <span className="corner tr">Développeur indépendant</span>
           <span className="corner bl">Web · Mobile · macOS</span>
           <span className="corner br">Défiler ↓</span>
-          <h1 className="hero-name" aria-label="Romain Delage, développeur">
-            <span className="solid rise">Romain</span>
-            <span className="out rise d1">Delage</span>
-            <span className="fluo rise d2">Dév.</span>
-          </h1>
-          <div className="hero-strip rise d3">
-            <p>
-              Je crée des logiciels utiles — apps mobiles, SaaS, macOS natif —
-              et je les emmène moi-même jusqu&apos;en production&nbsp;:
-              conception, code, infrastructure, déploiement.
-            </p>
-            <div className="stats">
-              <span>
-                <b>4</b>&nbsp;ans d&apos;indépendance
-              </span>
-              <span>
-                <b>3</b>&nbsp;produits en prod / lancement
-              </span>
+          <div className="sheet">
+            <h1 className="hero-name" aria-label="Romain Delage, développeur">
+              <span className="solid rise">Romain</span>
+              <span className="out rise d1">Delage</span>
+              <span className="fluo rise d2">Dév.</span>
+            </h1>
+            <div className="hero-strip rise d3">
+              <p>
+                Je crée des logiciels utiles — apps mobiles, SaaS, macOS natif —
+                et je les emmène moi-même jusqu&apos;en production&nbsp;:
+                conception, code, infrastructure, déploiement.
+              </p>
+              <div className="stats">
+                <span>
+                  <b>4</b>&nbsp;ans d&apos;indépendance
+                </span>
+                <span>
+                  <b>3</b>&nbsp;produits en prod / lancement
+                </span>
+              </div>
             </div>
+            <span className="avail-strip rise d4">
+              <i></i>Disponible pour de nouveaux projets
+            </span>
           </div>
-          <span className="avail-strip rise d4">
-            <i></i>Disponible pour de nouveaux projets
-          </span>
         </section>
 
         {/* ============ 02 · ÉCURIE ============ */}
@@ -89,48 +94,50 @@ export default function Home() {
           <span className="corner tr">App mobile · mission client</span>
           <span className="corner bl">Flutter · Go · PostgreSQL · VPS</span>
           <span className="corner br">En production</span>
-          <div className="proj-grid">
-            <div>
-              <span className="idx rise">Projet 01</span>
-              <h2 className="rise d1">Écurie</h2>
-              <div className="tagline rise d2">Vendre en direct. Sans Meta.</div>
-              <span className="status rise d2"><i></i>En production</span>
-              <div className="row rise d3">
-                <p>
-                  Une écurie qui voulait <b>posséder sa plateforme</b> plutôt
-                  que dépendre des petites annonces. App sur mesure — fiches
-                  détaillées, contact qualifié, gestion des annonces —{" "}
-                  <b>déployée de bout en bout</b> sur VPS&nbsp;: domaine,
-                  serveur, sécurité, mises à jour.
-                </p>
-                <div className="chips">
-                  <span>Flutter</span><span>Go</span><span>PostgreSQL</span><span>VPS</span>
+          <div className="sheet">
+            <div className="proj-grid">
+              <div>
+                <span className="idx rise">Projet 01</span>
+                <h2 className="rise d1">Écurie</h2>
+                <div className="tagline rise d2">Vendre en direct. Sans Meta.</div>
+                <span className="status rise d2"><i></i>En production</span>
+                <div className="row rise d3">
+                  <p>
+                    Une écurie qui voulait <b>posséder sa plateforme</b> plutôt
+                    que dépendre des petites annonces. App sur mesure — fiches
+                    détaillées, contact qualifié, gestion des annonces —{" "}
+                    <b>déployée de bout en bout</b> sur VPS&nbsp;: domaine,
+                    serveur, sécurité, mises à jour.
+                  </p>
+                  <div className="chips">
+                    <span>Flutter</span><span>Go</span><span>PostgreSQL</span><span>VPS</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="proj-media rise d2">
-              <div className="mock-phone" aria-hidden="true">
-                <div className="screen">
-                  <div className="notch"></div>
-                  <div className="app-top">
-                    <span className="t">Écurie</span>
-                    <span className="av"></span>
-                  </div>
-                  <div className="listing">
-                    <div className="lcard">
-                      <div className="lph"></div>
-                      <div className="meta">
-                        <div className="h">Quartana du Pré</div>
-                        <div className="s">Selle Français · 6 ans · Hongre</div>
-                        <div className="price">14 500 €</div>
-                      </div>
+              <div className="proj-media rise d2">
+                <div className="mock-phone" aria-hidden="true">
+                  <div className="screen">
+                    <div className="notch"></div>
+                    <div className="app-top">
+                      <span className="t">Écurie</span>
+                      <span className="av"></span>
                     </div>
-                    <div className="lcard">
-                      <div className="lph"></div>
-                      <div className="meta">
-                        <div className="h">Poney Welsh B</div>
-                        <div className="s">Poney · 4 ans · Jument</div>
-                        <div className="price">6 200 €</div>
+                    <div className="listing">
+                      <div className="lcard">
+                        <div className="lph"></div>
+                        <div className="meta">
+                          <div className="h">Quartana du Pré</div>
+                          <div className="s">Selle Français · 6 ans · Hongre</div>
+                          <div className="price">14 500 €</div>
+                        </div>
+                      </div>
+                      <div className="lcard">
+                        <div className="lph"></div>
+                        <div className="meta">
+                          <div className="h">Poney Welsh B</div>
+                          <div className="s">Poney · 4 ans · Jument</div>
+                          <div className="price">6 200 €</div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -147,52 +154,54 @@ export default function Home() {
           <span className="corner tr">SaaS · produit personnel</span>
           <span className="corner bl">Next.js · Node · PostgreSQL · MCP</span>
           <span className="corner br">Bêta ouverte bientôt</span>
-          <div className="proj-grid">
-            <div>
-              <span className="idx rise">Projet 02</span>
-              <h2 className="rise d1">Scaffolder</h2>
-              <div className="tagline rise d2">Le pilotage des fondateurs solo.</div>
-              <span className="status rise d2"><i></i>Bêta ouverte bientôt</span>
-              <div className="row rise d3">
-                <p>
-                  Projets, tâches, coûts, revenus — concentré, pensé pour
-                  avancer. Le différenciateur&nbsp;: un <b>serveur MCP natif</b>{" "}
-                  — vos agents IA lisent et écrivent comme des collègues, sous
-                  votre contrôle.
-                </p>
-                <div className="chips">
-                  <span>Next.js</span><span>Node</span><span>PostgreSQL</span><span>MCP natif</span>
+          <div className="sheet">
+            <div className="proj-grid">
+              <div>
+                <span className="idx rise">Projet 02</span>
+                <h2 className="rise d1">Scaffolder</h2>
+                <div className="tagline rise d2">Le pilotage des fondateurs solo.</div>
+                <span className="status rise d2"><i></i>Bêta ouverte bientôt</span>
+                <div className="row rise d3">
+                  <p>
+                    Projets, tâches, coûts, revenus — concentré, pensé pour
+                    avancer. Le différenciateur&nbsp;: un <b>serveur MCP natif</b>{" "}
+                    — vos agents IA lisent et écrivent comme des collègues, sous
+                    votre contrôle.
+                  </p>
+                  <div className="chips">
+                    <span>Next.js</span><span>Node</span><span>PostgreSQL</span><span>MCP natif</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="proj-media rise d2">
-              <div className="mock-win" aria-hidden="true">
-                <div className="bar2">
-                  <span className="traffic"><i></i><i></i><i></i></span>
-                  <span className="url">scaffolder.app / projets</span>
-                </div>
-                <div className="body2">
-                  <div className="task done">
-                    <span className="box"></span>
-                    <div className="tx">
-                      <div className="h">Landing page v2</div>
-                      <div className="s">Terminé · 2 h</div>
-                    </div>
-                    <span className="who you">vous</span>
+              <div className="proj-media rise d2">
+                <div className="mock-win" aria-hidden="true">
+                  <div className="bar2">
+                    <span className="traffic"><i></i><i></i><i></i></span>
+                    <span className="url">scaffolder.app / projets</span>
                   </div>
-                  <div className="task">
-                    <span className="box"></span>
-                    <div className="tx">
-                      <div className="h">Configurer Stripe</div>
-                      <div className="s">En cours</div>
+                  <div className="body2">
+                    <div className="task done">
+                      <span className="box"></span>
+                      <div className="tx">
+                        <div className="h">Landing page v2</div>
+                        <div className="s">Terminé · 2 h</div>
+                      </div>
+                      <span className="who you">vous</span>
                     </div>
-                    <span className="who ai">agent</span>
-                  </div>
-                  <div className="mcp">
-                    <span className="pulse"></span>
-                    <span className="mt">
-                      <b>MCP</b> · l&apos;agent a créé 3 tâches et mis à jour les coûts
-                    </span>
+                    <div className="task">
+                      <span className="box"></span>
+                      <div className="tx">
+                        <div className="h">Configurer Stripe</div>
+                        <div className="s">En cours</div>
+                      </div>
+                      <span className="who ai">agent</span>
+                    </div>
+                    <div className="mcp">
+                      <span className="pulse"></span>
+                      <span className="mt">
+                        <b>MCP</b> · l&apos;agent a créé 3 tâches et mis à jour les coûts
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -207,62 +216,64 @@ export default function Home() {
           <span className="corner tr">macOS natif · produit personnel</span>
           <span className="corner bl">Swift · SwiftTerm (fork) · Claude Code</span>
           <span className="corner br">Sortie imminente</span>
-          <div className="proj-grid">
-            <div>
-              <span className="idx rise">Projet 03</span>
-              <h2 className="rise d1">Smart<br />Notch</h2>
-              <div className="tagline rise d2">Un terminal dans l&apos;encoche.</div>
-              <span className="status rise d2"><i></i>Sortie imminente</span>
-              <div className="row rise d3">
-                <p>
-                  Poste de commande multi-agents pour Claude Code, logé dans{" "}
-                  <b>l&apos;encoche du MacBook</b>&nbsp;: monitoring,
-                  permissions, réponses — sans quitter l&apos;IDE. 100&nbsp;%
-                  natif, basé sur un <b>fork personnalisé de SwiftTerm</b>.
-                </p>
-                <div className="chips">
-                  <span>Swift</span><span>macOS natif</span><span>SwiftTerm (fork)</span><span>Claude Code</span>
+          <div className="sheet">
+            <div className="proj-grid">
+              <div>
+                <span className="idx rise">Projet 03</span>
+                <h2 className="rise d1">Smart<br />Notch</h2>
+                <div className="tagline rise d2">Un terminal dans l&apos;encoche.</div>
+                <span className="status rise d2"><i></i>Sortie imminente</span>
+                <div className="row rise d3">
+                  <p>
+                    Poste de commande multi-agents pour Claude Code, logé dans{" "}
+                    <b>l&apos;encoche du MacBook</b>&nbsp;: monitoring,
+                    permissions, réponses — sans quitter l&apos;IDE. 100&nbsp;%
+                    natif, basé sur un <b>fork personnalisé de SwiftTerm</b>.
+                  </p>
+                  <div className="chips">
+                    <span>Swift</span><span>macOS natif</span><span>SwiftTerm (fork)</span><span>Claude Code</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="proj-media rise d2">
-              <div className="mock-notch" aria-hidden="true">
-                <div className="macbar">
-                  <div className="real-notch">
-                    <span className="dotA"></span>
-                    <span className="mini">2 agents</span>
-                    <span className="dotB"></span>
-                  </div>
-                </div>
-                <div className="term">
-                  <div className="thead">
-                    <span className="ttl">smartnotch · multi-agent</span>
-                    <span className="ag">
-                      <i style={{ background: "var(--fluo)" }}></i>
-                      <i style={{ background: "#FFE81F" }}></i>
-                      <i style={{ background: "rgba(244,242,237,.3)" }}></i>
-                    </span>
-                  </div>
-                  <div className="agents">
-                    <div className="agent">
-                      <span className="st run"></span>
-                      <span className="nm">agent · api</span>
-                      <span className="ds">écrit handlers.go</span>
-                    </div>
-                    <div className="agent">
-                      <span className="st wait"></span>
-                      <span className="nm">agent · ui</span>
-                      <span className="ds q">↳ demande permission</span>
-                    </div>
-                    <div className="agent">
-                      <span className="st idle"></span>
-                      <span className="nm">agent · tests</span>
-                      <span className="ds">en attente</span>
+              <div className="proj-media rise d2">
+                <div className="mock-notch" aria-hidden="true">
+                  <div className="macbar">
+                    <div className="real-notch">
+                      <span className="dotA"></span>
+                      <span className="mini">2 agents</span>
+                      <span className="dotB"></span>
                     </div>
                   </div>
-                  <div className="tfoot">
-                    <span className="pmt">❯</span> autoriser agent · ui{" "}
-                    <span className="cur"></span>
+                  <div className="term">
+                    <div className="thead">
+                      <span className="ttl">smartnotch · multi-agent</span>
+                      <span className="ag">
+                        <i style={{ background: "var(--fluo)" }}></i>
+                        <i style={{ background: "#FFE81F" }}></i>
+                        <i style={{ background: "rgba(244,242,237,.3)" }}></i>
+                      </span>
+                    </div>
+                    <div className="agents">
+                      <div className="agent">
+                        <span className="st run"></span>
+                        <span className="nm">agent · api</span>
+                        <span className="ds">écrit handlers.go</span>
+                      </div>
+                      <div className="agent">
+                        <span className="st wait"></span>
+                        <span className="nm">agent · ui</span>
+                        <span className="ds q">↳ demande permission</span>
+                      </div>
+                      <div className="agent">
+                        <span className="st idle"></span>
+                        <span className="nm">agent · tests</span>
+                        <span className="ds">en attente</span>
+                      </div>
+                    </div>
+                    <div className="tfoot">
+                      <span className="pmt">❯</span> autoriser agent · ui{" "}
+                      <span className="cur"></span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -274,16 +285,19 @@ export default function Home() {
         <section className="poster p-fluo manif" id="p5" data-screen-label="Manifeste">
           <span className="corner tl">Manifeste</span>
           <span className="corner tr">05 / 08</span>
-          <h2 className="rise">
-            Je construis des logiciels utiles —{" "}
-            <span className="inv">et je les livre.</span>
-          </h2>
-          <p className="sub rise d1">
-            Pas seulement le code&nbsp;: l&apos;architecture,
-            l&apos;infrastructure, le déploiement, le sysadmin. Des produits qui
-            tournent, et qui servent — conçus pour que les humains et les agents
-            IA travaillent ensemble.
-          </p>
+          <div className="sheet">
+            <h2 className="rise">
+              Je construis des logiciels utiles —{" "}
+              <span className="inv">et je les livre.</span>
+            </h2>
+            <p className="sub rise d1">
+              Pas seulement le code&nbsp;: l&apos;architecture,
+              l&apos;infrastructure, le déploiement, le sysadmin. Des produits qui
+              tournent, et qui servent — conçus pour que les humains et les agents
+              IA travaillent ensemble.
+            </p>
+          </div>
+          {/* pleine largeur : le bandeau file d'un bord de feuille à l'autre */}
           <div className="marq" id="marq" aria-hidden="true">
             <div className="track">
               <span className="u">
@@ -301,50 +315,52 @@ export default function Home() {
           <span className="corner tl">Profil — 06 / 08</span>
           <span className="corner tr">4 ans d&apos;indépendance</span>
           <span className="corner br">Le bon outil pour le bon problème</span>
-          <div className="profil-head rise">
-            <h2>
-              Des logiciels qu&apos;on ouvre chaque jour,{" "}
-              <b>du site vitrine à l&apos;app native.</b>
-            </h2>
-            <Image
-              className="portrait"
-              src="/me-avatar.png"
-              alt="Portrait de Romain Delage"
-              width={220}
-              height={220}
-            />
-          </div>
-          <p className="lead2 rise d1">
-            Ce qui me porte&nbsp;: créer des outils qui simplifient vraiment le
-            quotidien — et les mener de l&apos;idée à la production. La
-            technique sert le produit, jamais l&apos;inverse.
-          </p>
-          <div className="stack-table rise d2">
-            <div className="stack-row">
-              <span className="k">Sites &amp; web</span>
-              <span className="v">
-                <span>React</span><span>Next.js</span><span>Node</span><span>PostgreSQL</span><span>MongoDB</span>
-              </span>
+          <div className="sheet">
+            <div className="profil-head rise">
+              <h2>
+                Des logiciels qu&apos;on ouvre chaque jour,{" "}
+                <b>du site vitrine à l&apos;app native.</b>
+              </h2>
+              <Image
+                className="portrait"
+                src="/me-avatar.png"
+                alt="Portrait de Romain Delage"
+                width={220}
+                height={220}
+              />
             </div>
-            <div className="stack-row">
-              <span className="k">Mobile</span>
-              <span className="v"><span>Flutter</span><span>React Native</span></span>
-            </div>
-            <div className="stack-row">
-              <span className="k">Desktop natif</span>
-              <span className="v"><span>Swift</span><span>Tauri</span><span>Wails</span></span>
-            </div>
-            <div className="stack-row">
-              <span className="k">Backend &amp; perf</span>
-              <span className="v"><span>Go</span><span>Rust</span></span>
-            </div>
-            <div className="stack-row">
-              <span className="k">Infra &amp; déploiement</span>
-              <span className="v"><span>VPS</span><span>Sysadmin</span><span>Sécurité</span></span>
-            </div>
-            <div className="stack-row">
-              <span className="k">Visibilité</span>
-              <span className="v"><span>SEO</span></span>
+            <p className="lead2 rise d1">
+              Ce qui me porte&nbsp;: créer des outils qui simplifient vraiment le
+              quotidien — et les mener de l&apos;idée à la production. La
+              technique sert le produit, jamais l&apos;inverse.
+            </p>
+            <div className="stack-table rise d2">
+              <div className="stack-row">
+                <span className="k">Sites &amp; web</span>
+                <span className="v">
+                  <span>React</span><span>Next.js</span><span>Node</span><span>PostgreSQL</span><span>MongoDB</span>
+                </span>
+              </div>
+              <div className="stack-row">
+                <span className="k">Mobile</span>
+                <span className="v"><span>Flutter</span><span>React Native</span></span>
+              </div>
+              <div className="stack-row">
+                <span className="k">Desktop natif</span>
+                <span className="v"><span>Swift</span><span>Tauri</span><span>Wails</span></span>
+              </div>
+              <div className="stack-row">
+                <span className="k">Backend &amp; perf</span>
+                <span className="v"><span>Go</span><span>Rust</span></span>
+              </div>
+              <div className="stack-row">
+                <span className="k">Infra &amp; déploiement</span>
+                <span className="v"><span>VPS</span><span>Sysadmin</span><span>Sécurité</span></span>
+              </div>
+              <div className="stack-row">
+                <span className="k">Visibilité</span>
+                <span className="v"><span>SEO</span></span>
+              </div>
             </div>
           </div>
         </section>
@@ -354,34 +370,36 @@ export default function Home() {
           <span className="corner tl">Missions freelance — 07 / 08</span>
           <span className="corner tr">Réponse sous 24 h</span>
           <span className="corner bl">Un seul interlocuteur</span>
-          <h2 className="rise">
-            Je prends aussi <b>des missions.</b>
-          </h2>
-          <div className="miss-grid rise d1">
-            <div className="miss-step">
-              <span className="n">01</span>
-              <h3>Cadrage</h3>
-              <p>Problème, périmètre, objectif. Un plan clair et un devis sans surprise.</p>
+          <div className="sheet">
+            <h2 className="rise">
+              Je prends aussi <b>des missions.</b>
+            </h2>
+            <div className="miss-grid rise d1">
+              <div className="miss-step">
+                <span className="n">01</span>
+                <h3>Cadrage</h3>
+                <p>Problème, périmètre, objectif. Un plan clair et un devis sans surprise.</p>
+              </div>
+              <div className="miss-step">
+                <span className="n">02</span>
+                <h3>Design</h3>
+                <p>Maquettes et parcours, validés ensemble avant la première ligne de code.</p>
+              </div>
+              <div className="miss-step">
+                <span className="n">03</span>
+                <h3>Développement</h3>
+                <p>Par itérations, avec des points réguliers. Pas une boîte noire.</p>
+              </div>
+              <div className="miss-step">
+                <span className="n">04</span>
+                <h3>Déploiement</h3>
+                <p>Serveur, domaine, sécurité, sauvegardes. Un produit en ligne, pas un zip.</p>
+              </div>
             </div>
-            <div className="miss-step">
-              <span className="n">02</span>
-              <h3>Design</h3>
-              <p>Maquettes et parcours, validés ensemble avant la première ligne de code.</p>
+            <div className="miss-promises rise d2">
+              <span><b>Livraison</b> code, accès, doc — tout vous appartient.</span>
+              <span><b>Infra</b> incluse, je m&apos;en occupe.</span>
             </div>
-            <div className="miss-step">
-              <span className="n">03</span>
-              <h3>Développement</h3>
-              <p>Par itérations, avec des points réguliers. Pas une boîte noire.</p>
-            </div>
-            <div className="miss-step">
-              <span className="n">04</span>
-              <h3>Déploiement</h3>
-              <p>Serveur, domaine, sécurité, sauvegardes. Un produit en ligne, pas un zip.</p>
-            </div>
-          </div>
-          <div className="miss-promises rise d2">
-            <span><b>Livraison</b> code, accès, doc — tout vous appartient.</span>
-            <span><b>Infra</b> incluse, je m&apos;en occupe.</span>
           </div>
         </section>
 
@@ -389,20 +407,22 @@ export default function Home() {
         <section className="poster p-fluo contactP" id="p8" data-screen-label="Contact">
           <span className="corner tl">Contact</span>
           <span className="corner tr">08 / 08 — réponse sous 24 h</span>
-          <h2>
-            <a href="mailto:contact@romaindelage.fr">
-              <span className="rise" style={{ display: "block" }}>Écrivez-</span>
-              <span className="out2 rise d1" style={{ display: "block" }}>moi.</span>
-            </a>
-          </h2>
-          <div className="mail rise d2">
-            <a href="mailto:contact@romaindelage.fr">contact@romaindelage.fr</a>
-            <span className="note">{"// email à confirmer"}</span>
-          </div>
-          <div className="footer rise d3">
-            <span>© 2026 Romain Delage</span>
-            <span>Web · Mobile · macOS</span>
-            <span>De l&apos;idée à la production</span>
+          <div className="sheet">
+            <h2>
+              <a href="mailto:contact@romaindelage.fr">
+                <span className="rise" style={{ display: "block" }}>Écrivez-</span>
+                <span className="out2 rise d1" style={{ display: "block" }}>moi.</span>
+              </a>
+            </h2>
+            <div className="mail rise d2">
+              <a href="mailto:contact@romaindelage.fr">contact@romaindelage.fr</a>
+              <span className="note">{"// email à confirmer"}</span>
+            </div>
+            <div className="footer rise d3">
+              <span>© 2026 Romain Delage</span>
+              <span>Web · Mobile · macOS</span>
+              <span>De l&apos;idée à la production</span>
+            </div>
           </div>
         </section>
       </main>
