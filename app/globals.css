@@ -25,6 +25,12 @@
    d'origine s'appuyait sur le bold navigateur (faux-gras sur Archivo Black) */
 h1,h2,h3{font-weight:bold!important}
 html{-webkit-text-size-adjust:100%}
+/* La nav à pastilles est faite d'ancres : sans ça, le clic téléporte d'un
+   poster à l'autre. Sur `html`, ça couvre aussi les ancres au clavier et
+   `scrollIntoView`. */
+@media(prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+}
 @media(min-height:560px) and (prefers-reduced-motion:no-preference){
   html.snap-on{scroll-snap-type:y mandatory}
   html.snap-on .poster{scroll-snap-align:start}
