@@ -301,13 +301,20 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
 .profil h2 b{color:var(--fluo);font-weight:400}
 .profil .lead2{margin-top:1.25rem;max-width:56ch;font-weight:500;position:relative;z-index:1;text-wrap:pretty}
 .stack-table{margin-top:clamp(1.5rem,4vh,2.5rem);position:relative;z-index:1;border-top:.125rem solid currentColor}
+/* 10rem : « INFRA & DÉPLOIEMENT », le libellé le plus long, mesure 146px —
+   la colonne en réservait 200 pendant que « Données » débordait de 9px et
+   partait sur deux lignes. Les 40px rendus tiennent la ligne la plus large
+   (562px) avec de la marge, en mono à taille fixe donc invariante au viewport. */
 .stack-row{
-  display:grid;grid-template-columns:12.5rem 1fr;gap:.875rem;align-items:baseline;
+  display:grid;grid-template-columns:10rem 1fr;gap:.875rem;align-items:baseline;
   padding:.75rem 0;border-bottom:.0625rem solid color-mix(in srgb,currentColor 30%,transparent);
 }
 .stack-row .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--fluo)}
 .stack-row .v{font-weight:600;font-size:.96rem;display:flex;flex-wrap:wrap;gap:.25rem 0}
-.stack-row .v span+span::before{content:"·";margin-inline:.5em;opacity:.4;font-weight:400}
+/* Le séparateur ferme l'entrée précédente au lieu d'ouvrir la suivante : porté
+   par ::before, il passait à la ligne collé au mot suivant et ouvrait la ligne
+   par un « · » orphelin, décalant l'entrée sous le bord de la colonne. */
+.stack-row .v span:not(:last-child)::after{content:"·";margin-inline:.5em;opacity:.4;font-weight:400}
 @media(max-width:700px){.stack-row{grid-template-columns:1fr;gap:.25rem}}
 
 /* ---------------- missions ---------------- */
