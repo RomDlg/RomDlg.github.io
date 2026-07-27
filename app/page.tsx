@@ -341,30 +341,36 @@ export default function Home() {
             </p>
             <div className="stack-table rise d2">
               <div className="stack-row">
-                <span className="k">Sites &amp; web</span>
+                <span className="k">Front-end</span>
                 <span className="v">
-                  <span>React</span><span>Next.js</span><span>Node</span><span>PostgreSQL</span><span>MongoDB</span>
+                  <span>React</span><span>Next.js</span><span>TypeScript</span><span>SEO technique</span>
+                </span>
+              </div>
+              <div className="stack-row">
+                <span className="k">Back-end &amp; API</span>
+                <span className="v">
+                  <span>Node</span><span>Python</span><span>Go</span><span>Rust</span>
                 </span>
               </div>
               <div className="stack-row">
                 <span className="k">Mobile</span>
-                <span className="v"><span>Flutter</span><span>React Native</span></span>
+                <span className="v"><span>Swift</span><span>Flutter</span><span>React Native</span></span>
               </div>
               <div className="stack-row">
-                <span className="k">Desktop natif</span>
-                <span className="v"><span>Swift</span><span>Tauri</span><span>Wails</span></span>
+                <span className="k">Desktop</span>
+                <span className="v"><span>Swift (macOS natif)</span><span>Tauri</span><span>Wails</span></span>
               </div>
               <div className="stack-row">
-                <span className="k">Backend &amp; perf</span>
-                <span className="v"><span>Go</span><span>Rust</span></span>
+                <span className="k">Données</span>
+                <span className="v">
+                  <span>PostgreSQL</span><span>MySQL</span><span>MongoDB</span><span>ClickHouse</span><span>Elasticsearch</span>
+                </span>
               </div>
               <div className="stack-row">
                 <span className="k">Infra &amp; déploiement</span>
-                <span className="v"><span>VPS</span><span>Sysadmin</span><span>Sécurité</span></span>
-              </div>
-              <div className="stack-row">
-                <span className="k">Visibilité</span>
-                <span className="v"><span>SEO</span></span>
+                <span className="v">
+                  <span>VPS</span><span>Google Cloud</span><span>Sysadmin</span><span>Sécurité</span>
+                </span>
               </div>
             </div>
           </div>
