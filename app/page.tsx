@@ -292,14 +292,13 @@ export default function Home() {
           <span className="corner tr">05 / 08</span>
           <div className="sheet">
             <h2 className="rise">
-              Je construis des logiciels utiles —{" "}
-              <span className="inv">et je les livre.</span>
+              Je rends les idées concrètes —{" "}
+              <span className="inv">de A à Z.</span>
             </h2>
             <p className="sub rise d1">
-              Pas seulement le code&nbsp;: l&apos;architecture,
-              l&apos;infrastructure, le déploiement, le sysadmin. Des produits qui
-              tournent, et qui servent — conçus pour que les humains et les agents
-              IA travaillent ensemble.
+              Vous arrivez avec une idée. Je m&apos;occupe du reste&nbsp;: le
+              design, le code, le serveur, la mise en ligne. À la fin, vous avez
+              un produit qui tourne pour de vrai — et il est à vous.
             </p>
           </div>
           {/* pleine largeur : le bandeau file d'un bord de feuille à l'autre */}
