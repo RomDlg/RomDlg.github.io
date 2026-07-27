@@ -349,7 +349,7 @@ export default function Home() {
               <div className="stack-row">
                 <span className="k">Back-end &amp; API</span>
                 <span className="v">
-                  <span>Node</span><span>Python</span><span>Go</span><span>Rust</span>
+                  <span>Node</span><span>Python</span><span>Go</span><span>Rust</span><span>Firebase</span>
                 </span>
               </div>
               <div className="stack-row">
@@ -363,13 +363,13 @@ export default function Home() {
               <div className="stack-row">
                 <span className="k">Données</span>
                 <span className="v">
-                  <span>PostgreSQL</span><span>MySQL</span><span>MongoDB</span><span>ClickHouse</span><span>Elasticsearch</span>
+                  <span>PostgreSQL</span><span>MySQL</span><span>MongoDB</span><span>ClickHouse</span><span>BigQuery</span><span>Elasticsearch</span>
                 </span>
               </div>
               <div className="stack-row">
                 <span className="k">Infra &amp; déploiement</span>
                 <span className="v">
-                  <span>VPS</span><span>Google Cloud</span><span>Sysadmin</span><span>Sécurité</span>
+                  <span>VPS</span><span>Docker</span><span>Cloud Run</span><span>Cloud Storage</span><span>GitHub Actions</span><span>Cloudflare</span>
                 </span>
               </div>
             </div>
