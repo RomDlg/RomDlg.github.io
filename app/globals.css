@@ -35,6 +35,12 @@ html{-webkit-text-size-adjust:100%}
   html.snap-on{scroll-snap-type:y mandatory}
   html.snap-on .poster{scroll-snap-align:start}
 }
+/* Souris/trackpad : le JS anime lui-même le passage d'une affiche à
+   l'autre (durée réglable, le snap natif n'en a pas). Il faut alors lui
+   laisser la main pleine — snap et smooth natifs reprendraient la barre
+   en cours d'animation. Le tactile, lui, garde le snap CSS ci-dessus. */
+html.js-scroll{scroll-behavior:auto;scroll-snap-type:none}
+html.js-scroll .poster{scroll-snap-align:none}
 body{
   background:var(--noir);color:var(--blanc);
   font-family:var(--body);font-size:1.03125rem;line-height:1.55;

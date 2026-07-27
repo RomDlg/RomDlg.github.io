@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
+import { useSmoothSnap } from "./use-smooth-snap";
 
 const POSTERS = [
   { id: "p1", label: "Accueil" },
@@ -16,6 +17,10 @@ const POSTERS = [
 
 export default function Home() {
   const dotsRef = useRef<HTMLElement>(null);
+
+  /* Passage d'affiche à affiche : durée et courbe pilotées en JS plutôt
+     que laissées au snap natif (voir use-smooth-snap.ts). */
+  useSmoothSnap(".poster");
 
   useEffect(() => {
     const posters = document.querySelectorAll<HTMLElement>(".poster");
