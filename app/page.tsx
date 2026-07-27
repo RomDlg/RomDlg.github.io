@@ -66,28 +66,31 @@ export default function Home() {
           <span className="corner bl">Web · Mobile · macOS</span>
           <span className="corner br">Défiler ↓</span>
           <div className="sheet">
-            <h1 className="hero-name" aria-label="Romain Delage, développeur">
-              <span className="solid rise">Romain</span>
-              <span className="out rise d1">Delage</span>
-              <span className="fluo rise d2">Dév.</span>
+            <h1
+              className="hero-name"
+              aria-label="Votre idée, en ligne — Romain Delage, développeur"
+            >
+              <span className="solid rise">Votre</span>
+              <span className="out rise d1">idée,</span>
+              <span className="fluo rise d2">en ligne.</span>
             </h1>
             <div className="hero-strip rise d3">
               <p>
-                Je crée des logiciels utiles — apps mobiles, SaaS, macOS natif —
-                et je les emmène moi-même jusqu&apos;en production&nbsp;:
-                conception, code, infrastructure, déploiement.
+                Moi c&apos;est Romain, développeur indépendant. Je conçois et je
+                code des apps mobiles, des SaaS et des logiciels macOS — puis je
+                les mets en ligne moi-même, serveur compris.
               </p>
               <div className="stats">
                 <span>
-                  <b>4</b>&nbsp;ans d&apos;indépendance
+                  <b>4</b>&nbsp;ans à mon compte
                 </span>
                 <span>
-                  <b>3</b>&nbsp;produits en prod / lancement
+                  <b>3</b>&nbsp;produits, 1 déjà en prod
                 </span>
               </div>
             </div>
             <span className="avail-strip rise d4">
-              <i></i>Disponible pour de nouveaux projets
+              <i></i>Disponible — parlons de votre projet
             </span>
           </div>
         </section>

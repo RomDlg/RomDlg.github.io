@@ -118,7 +118,10 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
 /* ---------------- hero ---------------- */
 .hero-name{
   font-family:var(--disp);text-transform:uppercase;
-  font-size:min(clamp(4rem,15vw,15rem),30vh);
+  /* Le plancher est calé sur la ligne la plus longue (« EN LIGNE. », ~4,8 em
+     de chasse) : à 4rem elle débordait sous 360px, et `overflow-x:hidden`
+     l'aurait rognée au lieu de le montrer. */
+  font-size:min(clamp(3.25rem,13.5vw,15rem),30vh);
   line-height:.84;letter-spacing:-0.02em;
   position:relative;z-index:1;
 }
