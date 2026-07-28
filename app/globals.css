@@ -118,10 +118,7 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
 /* ---------------- hero ---------------- */
 .hero-name{
   font-family:var(--disp);text-transform:uppercase;
-  /* Le plancher est calé sur la ligne la plus longue (« EN LIGNE. », ~4,8 em
-     de chasse) : à 4rem elle débordait sous 360px, et `overflow-x:hidden`
-     l'aurait rognée au lieu de le montrer. */
-  font-size:min(clamp(3.25rem,13.5vw,15rem),30vh);
+  font-size:min(clamp(4rem,15vw,15rem),30vh);
   line-height:.84;letter-spacing:-0.02em;
   position:relative;z-index:1;
 }
@@ -134,6 +131,14 @@ button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
 .hero-name .out,.contactP h2 .out2{font-weight:400;font-synthesis-weight:none}
 .hero-name .out{display:block;color:transparent;-webkit-text-stroke:.15625rem var(--blanc)}
 .hero-name .fluo{display:block;color:var(--fluo)}
+/* Ligne de rôle : dimensionnée en `em`, donc toujours dans le même rapport
+   au nom, à toutes les tailles d'écran. À 0.24em elle vient border le bloc
+   du nom sans jamais le dépasser (23 signes ≈ 15,5 em de chasse). */
+.hero-name .role{
+  font-size:.24em;line-height:1.05;letter-spacing:.015em;
+  margin-top:.7em; /* .7 × .24 ≈ 0,17 em du nom : le blanc que la ligne
+                      de rôle mérite sans casser le bloc */
+}
 .hero-strip{
   margin-top:clamp(1.5rem,4vh,2.75rem);display:flex;justify-content:space-between;align-items:center;gap:1.125rem;flex-wrap:wrap;
   border-top:.125rem solid var(--blanc);padding-top:1.125rem;position:relative;z-index:1;

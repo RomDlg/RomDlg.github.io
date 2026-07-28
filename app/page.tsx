@@ -68,17 +68,17 @@ export default function Home() {
           <div className="sheet">
             <h1
               className="hero-name"
-              aria-label="Votre idée, en ligne — Romain Delage, développeur"
+              aria-label="Romain Delage, développeur indépendant"
             >
-              <span className="solid rise">Votre</span>
-              <span className="out rise d1">idée,</span>
-              <span className="fluo rise d2">en ligne.</span>
+              <span className="solid rise">Romain</span>
+              <span className="out rise d1">Delage</span>
+              <span className="role fluo rise d2">Développeur indépendant</span>
             </h1>
             <div className="hero-strip rise d3">
               <p>
-                Moi c&apos;est Romain, développeur indépendant. Je conçois et je
-                code des apps mobiles, des SaaS et des logiciels macOS — puis je
-                les mets en ligne moi-même, serveur compris.
+                Moi c&apos;est Romain. Je conçois, je code et je déploie des
+                apps mobiles, des SaaS et des logiciels macOS — du premier écran
+                jusqu&apos;au serveur.
               </p>
               <div className="stats">
                 <span>
@@ -90,7 +90,7 @@ export default function Home() {
               </div>
             </div>
             <span className="avail-strip rise d4">
-              <i></i>Disponible — parlons de votre projet
+              <i></i>Disponible pour de nouveaux projets
             </span>
           </div>
         </section>
