@@ -76,9 +76,10 @@ export default function Home() {
             </h1>
             <div className="hero-strip rise d3">
               <p>
-                Moi c&apos;est Romain. Je conçois, je code et je déploie des
-                apps mobiles, des SaaS et des logiciels macOS — du premier écran
-                jusqu&apos;au serveur.
+                Je couvre l&apos;ensemble de la chaîne technique&nbsp;:
+                architecture, développement mobile, web et macOS natif,
+                infrastructure, déploiement. Un seul interlocuteur, de la
+                conception à la production.
               </p>
               <div className="stats">
                 <span>
