@@ -1,35 +1,34 @@
-# Portfolio — Romain Delage
+# Romain Delage · Portfolio
 
-Portfolio personnel, en ligne sur **https://romdlg.github.io**.
+Static one-page portfolio, built from the Claude Design "Portfolio F – Signature" mockup.
+No framework and no build step: plain HTML, CSS and JS, ready for GitHub Pages.
 
-Next.js 16 (App Router) + Tailwind CSS 4, exporté en statique.
-
-## Développement
-
-```bash
-npm install
-npm run dev
+```
+index.html              page + all CSS (inlined for the fastest first paint)
+assets/js/main.js       interactions (projects, quote builder, x-ray mode…)
+assets/fonts/           self-hosted, subsetted woff2 fonts (~83 KB total)
+assets/img/             favicon, Apple touch icon, social preview (og.png)
+404.html, robots.txt, sitemap.xml, .nojekyll
 ```
 
-Puis http://localhost:3000. La page vit dans `app/page.tsx`.
+## Deploy on GitHub Pages
 
-## Build
+1. Create a public repo named **`RomDlg.github.io`**, so the site lives at `https://romdlg.github.io/`.
+2. Push this folder to the `main` branch.
+3. In the repo, go to **Settings → Pages → Build and deployment**, choose **Deploy from a branch**, then select `main` / `root`.
 
-```bash
-npm run build
-```
+If you use another repo name (for example `portfolio`), the site is served at `https://romdlg.github.io/portfolio/`.
+In that case, update the absolute URLs in `index.html` (canonical, `og:*`, JSON-LD), `robots.txt` and `sitemap.xml`, plus the `/` links in `404.html`.
 
-`output: "export"` produit un site statique dans `out/`. Pour le vérifier avant de pousser :
+## What to edit
 
-```bash
-npx serve out
-```
+| What | Where |
+| --- | --- |
+| Contact email | Search and replace `contact@romaindelage.fr` in `index.html` and `assets/js/main.js` |
+| "Réserver un appel" link | `data-book` link in `index.html` (currently a `mailto:`; paste a Cal.com or Calendly URL there) |
+| Case studies | `PROJECTS` in `main.js`; set `img: 'assets/img/projet-1.webp'` to show a screenshot (16:8 ratio) |
+| Tab labels | The four `.tab` buttons in `index.html` |
+| Prices and durations | `SERVICES` in `main.js`, plus the "dès … €" labels in `index.html` |
+| Portrait | Replace the `.portrait` placeholder (see the HTML comment above it) |
 
-## Déploiement
-
-Automatique : chaque push sur `main` déclenche `.github/workflows/deploy.yml`, qui build et publie `out/` sur GitHub Pages.
-
-Deux détails à ne pas casser :
-
-- `public/.nojekyll` — sans lui, GitHub Pages ignore le dossier `_next/` et le site perd son CSS et son JS.
-- `images.unoptimized: true` dans `next.config.ts` — l'optimisation d'images de Next.js exige un serveur, absent sur Pages.
+Use WebP or AVIF images at about 1600 px wide for project screenshots, so the page stays fast.
