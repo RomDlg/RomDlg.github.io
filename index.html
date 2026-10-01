@@ -105,14 +105,15 @@ a:active,button:active{scale:.97}
 .lg-acc{fill:var(--accent)}
 .brand-name{font-weight:600;font-size:1rem;letter-spacing:-.02em}
 .nav{display:flex;gap:2px;flex-wrap:wrap;justify-content:center}
-.nav a{font-size:.875rem;padding:.5rem .8125rem;border-radius:999px;color:var(--body)}
-.nav a:hover{background:rgba(18,18,18,.06)}
-.nav a.is-active{background:var(--ink);color:var(--bg)}
+.nav>a{font-size:.875rem;padding:.5rem .8125rem;border-radius:999px;color:var(--body)}
+.nav>a:hover{background:rgba(18,18,18,.06)}
+.nav>a.is-active{background:var(--ink);color:var(--bg)}
 .hd-act{display:flex;align-items:center;gap:.625rem}
-.telbtn{font-size:.8125rem;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap;display:flex;align-items:center;gap:.5rem;padding:.5rem .875rem .5rem .75rem;border-radius:999px;border:1px solid rgba(18,18,18,.14);background:transparent;color:var(--ink)}
+.telbtn{font-size:.8125rem;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:.5rem;height:2.625rem;padding:0 .875rem 0 .75rem;border-radius:999px;border:1px solid rgba(18,18,18,.14);background:transparent;color:var(--ink)}
 .telbtn:hover{border-color:var(--ink)}
 .telbtn svg{width:1rem;height:1rem;flex:none}
-.hd-cta{font-size:.875rem;padding:.6875rem 1.125rem}
+.hd-cta{font-size:.875rem;height:2.625rem;padding:0 1.125rem}
+.nav-act{display:none}
 .menu-btn{display:none;width:2.625rem;height:2.625rem;border-radius:50%;border:1px solid rgba(18,18,18,.14);background:transparent;position:relative;flex-shrink:0}
 .menu-btn span{position:absolute;left:.75rem;right:.75rem;height:1.5px;background:var(--ink);border-radius:2px;transition:transform .45s var(--ease)}
 .menu-btn span:first-child{transform:translateY(-.25rem)}
@@ -322,17 +323,36 @@ details[open]>p{opacity:1;transform:none}
 .rv.in{opacity:1;translate:0 0}
 
 /* ---------- Responsive ---------- */
-@media (max-width:1100px){.telbtn .telbtn-l{display:none}.telbtn{padding:.5625rem}}
+@media (max-width:1100px){.telbtn .telbtn-l{display:none}.telbtn{width:2.625rem;padding:0}}
 @media (max-width:920px){
   .menu-btn{display:block}
-  .nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:.5rem clamp(1rem,3vw,2.5rem) 1.25rem;background:var(--bg);border-bottom:1px solid rgba(18,18,18,.08);box-shadow:0 1.5rem 2.5rem rgba(18,18,18,.12);visibility:hidden;opacity:0;translate:0 -.5rem;transition:opacity .3s ease,translate .4s var(--ease),visibility 0s .4s}
-  .menu-open .nav{visibility:visible;opacity:1;translate:0 0;transition:opacity .3s ease,translate .4s var(--ease)}
-  .nav a{font-size:1.375rem;font-weight:500;letter-spacing:-.02em;padding:.875rem .25rem;border-radius:0;border-bottom:1px solid var(--line);color:var(--ink)}
-  .nav a:hover,.nav a.is-active{background:transparent;color:var(--accent)}
+  .menu-open{background:var(--bg)}
+  /* Full-height panel under the bar. --hd-h is the bar's height, kept in sync by main.js. */
+  .nav{position:absolute;top:100%;left:0;right:0;height:calc(100vh - var(--hd-h,4rem));height:calc(100dvh - var(--hd-h,4rem));overflow-y:auto;overscroll-behavior:contain;flex-direction:column;flex-wrap:nowrap;justify-content:flex-start;align-items:stretch;gap:0;padding:1rem var(--gx) max(1.5rem,env(safe-area-inset-bottom));background:var(--bg);counter-reset:nav;visibility:hidden;opacity:0;transition:opacity .3s ease,visibility 0s .3s}
+  .menu-open .nav{visibility:visible;opacity:1;transition:opacity .3s ease}
+  .nav>a{counter-increment:nav;display:flex;align-items:baseline;gap:1rem;font-size:clamp(2rem,9vw,2.75rem);font-weight:600;letter-spacing:-.045em;line-height:1.1;padding:.875rem 0;border-radius:0;border-bottom:1px solid var(--line);color:var(--ink);opacity:0;translate:0 1rem;transition:opacity .4s ease,translate .6s var(--ease),color .3s ease}
+  .nav>a::before{content:"(0" counter(nav) ")";font-family:var(--mono);font-size:.75rem;font-weight:400;letter-spacing:0;color:var(--muted);translate:0 -.2em}
+  .menu-open .nav>a,.menu-open .nav-act{opacity:1;translate:0 0}
+  .menu-open .nav>a:nth-child(2){transition-delay:.04s}
+  .menu-open .nav>a:nth-child(3){transition-delay:.08s}
+  .menu-open .nav>a:nth-child(4){transition-delay:.12s}
+  .menu-open .nav>a:nth-child(5){transition-delay:.16s}
+  .nav>a:hover,.nav>a.is-active{background:transparent;color:var(--accent)}
   .faq-list{grid-column:auto}
 }
+/* Phones: the bar keeps just the brand and the menu button; the call and contact buttons move into the panel. */
+@media (max-width:640px){
+  .hd-in{padding:.625rem var(--gx)}
+  .logo{width:2.25rem;height:2.25rem}
+  .brand{gap:.625rem}
+  .brand-name{font-size:.9375rem}
+  .telbtn,.hd-cta{display:none}
+  .menu-btn{width:2.5rem;height:2.5rem}
+  .nav-act{display:grid;gap:.625rem;margin-top:auto;padding-top:2rem;opacity:0;translate:0 1rem;transition:opacity .4s ease .2s,translate .6s var(--ease) .2s}
+  .nav-act .btn{font-size:1rem;padding:1.0625rem 1.5rem}
+  .nav-act svg{width:1.125rem;height:1.125rem}
+}
 @media (max-width:480px){
-  .hd-cta{padding:.625rem .875rem}
   .copy{font-size:1rem;padding:1.0625rem .625rem 1.0625rem 1.375rem;gap:.75rem}
   .badge{min-width:4.5rem}
   .btn-white{font-size:1.0625rem;padding:1.125rem 1.625rem}
@@ -340,7 +360,6 @@ details[open]>p{opacity:1;transform:none}
   .svc-btn{gap:.875rem;padding:1.25rem}
   .svc-more p{padding:0 1.25rem 1.25rem}
 }
-@media (max-width:400px){.brand-name{display:none}}
 @media (hover:none){.tk:hover{transform:rotate(-1.2deg)}}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -365,6 +384,10 @@ details[open]>p{opacity:1;transform:none}
       <a href="#apropos">À propos</a>
       <a href="#projets">Projets</a>
       <a href="#faq">FAQ</a>
+      <div class="nav-act">
+        <a class="btn btn-dark" href="#contact">Me contacter</a>
+        <a class="btn btn-line" href="tel:+33612345678"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>06 12 34 56 78</a>
+      </div>
     </nav>
     <div class="hd-act">
       <a class="telbtn" href="tel:+33612345678" aria-label="Appeler le 06 12 34 56 78">

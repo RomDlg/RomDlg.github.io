@@ -29,12 +29,13 @@
   const root = document.documentElement;
 
   // ---------------------------------------------------------------- Header: progress, active section, method line
-  const header = $('#hd'), bar = $('.hd-bar'), navLinks = $$('.nav a'), methFill = $('.meth-fill'), meth = $('#methode');
+  const header = $('#hd'), bar = $('.hd-bar'), navLinks = $$('.nav > a'), methFill = $('.meth-fill'), meth = $('#methode');
   const navSecs = navLinks.map(a => $(a.hash));
   let geo = null, activeIdx = -2, ticking = false;
 
   const measure = () => {
     const y = scrollY, vh = innerHeight;
+    header.style.setProperty('--hd-h', `${header.offsetHeight}px`);
     geo = {
       vh, max: Math.max(1, root.scrollHeight - vh),
       tops: navSecs.map(s => s.getBoundingClientRect().top + y),
@@ -64,11 +65,13 @@
   const menuBtn = $('.menu-btn');
   const setMenu = open => {
     header.classList.toggle('menu-open', open);
+    root.style.overflow = open ? 'hidden' : '';
     menuBtn.setAttribute('aria-expanded', open);
     menuBtn.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
   };
   menuBtn.addEventListener('click', () => setMenu(!header.classList.contains('menu-open')));
-  navLinks.forEach(a => a.addEventListener('click', () => setMenu(false)));
+  $$('.nav a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  matchMedia('(min-width: 921px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
   addEventListener('keydown', e => { if (e.key === 'Escape' && header.classList.contains('menu-open')) { setMenu(false); menuBtn.focus(); } });
   document.addEventListener('click', e => { if (!header.contains(e.target)) setMenu(false); });
 
