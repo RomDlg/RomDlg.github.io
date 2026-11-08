@@ -147,33 +147,18 @@ a.status:hover{border-color:var(--ink)}
 .lede{max-width:22.5rem;color:var(--muted);font-size:1rem;line-height:1.55}
 
 /* ---------- Projects ---------- */
-.proj{display:flex;flex-wrap:wrap;gap:1.25rem;align-items:flex-start}
-.tabs{position:relative;flex:1 1 16.25rem;max-width:100%;display:flex;flex-direction:column;gap:.375rem}
-.tab-ind{position:absolute;left:0;right:0;top:0;height:0;border-radius:1.125rem;background:var(--ink);transition:transform .6s var(--io),height .6s var(--io);pointer-events:none}
-.tab{position:relative;z-index:1;text-align:left;padding:1.25rem 1.375rem;border-radius:1.125rem;border:1px solid var(--line);background:#fff;color:var(--ink);display:grid;grid-template-columns:2.25rem minmax(0,1fr) auto;gap:.75rem;align-items:center;transition:all .35s var(--ease)}
-.tab:hover{border-color:var(--ink)}
-.tab[aria-selected=true]{border-color:transparent;background:transparent;color:var(--bg)}
-.tabs:not(.ready) .tab[aria-selected=true]{background:var(--ink)}
-.tab-n{font-family:var(--mono);font-size:.75rem;opacity:.6}
-.tab-txt{display:flex;flex-direction:column;gap:.25rem}
-.tab-t{font-size:1.1875rem;font-weight:600;letter-spacing:-.02em}
-.tab-c{font-size:.8125rem;opacity:.65}
-.tab-arr{font-size:1.125rem;transform:translateX(-.375rem);transition:transform .4s var(--ease)}
-.tab[aria-selected=true] .tab-arr{transform:none}
-.panel{position:relative;flex:999 1 30rem;min-width:0;display:flex;flex-direction:column;gap:1.75rem;padding:clamp(1rem,2vw,1.75rem);border-radius:1.75rem;background:#fff;border:1px solid rgba(18,18,18,.08)}
-.shot{position:relative;aspect-ratio:16/8;border-radius:1rem;overflow:hidden;transition:transform .6s var(--ease);isolation:isolate}
-.shot-img{position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(18,18,18,.06) 0 1px,transparent 1px .6875rem),var(--card);display:grid;place-items:center;font-family:var(--mono);font-size:.75rem;color:var(--muted-2)}
-.shot-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.curtain{position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:left;display:grid;place-items:center}
-.curtain span{font-size:clamp(4rem,9vw,8.75rem);font-weight:700;letter-spacing:-.07em;color:#fff;line-height:1}
-.shot-tag{position:absolute;left:1rem;bottom:.875rem;font-family:var(--mono);font-size:.6875rem;padding:.375rem .625rem;border-radius:999px;background:rgba(244,243,239,.9);color:var(--ink)}
+.panel{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:1.75rem;padding:clamp(1rem,2vw,1.75rem);border-radius:1.75rem;background:#fff;border:1px solid rgba(18,18,18,.08)}
+/* Sized to the 1200×630 visual so nothing gets cropped. The dark fill matches it while it loads. */
+.shot{position:relative;display:block;aspect-ratio:1200/630;border-radius:1rem;overflow:hidden;background:#0b0b0d;transition:transform .6s var(--ease);isolation:isolate}
+.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.shot-tag{position:absolute;right:1rem;top:.875rem;font-family:var(--mono);font-size:.6875rem;padding:.375rem .625rem;border-radius:999px;background:rgba(244,243,239,.9);color:var(--ink);transition:background-color .3s ease}
+.shot:hover .shot-tag{background:#fff}
 .pj-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1.25rem;flex-wrap:wrap}
 .pj-hl{display:flex;flex-direction:column;gap:.625rem}
 .pj-meta{font-family:var(--mono);font-size:.75rem;color:var(--accent)}
-.pj-title{font-size:clamp(1.875rem,3.2vw,3rem);font-weight:600;letter-spacing:-.04em;line-height:1.05;display:flex;flex-wrap:wrap;column-gap:.25em}
-.wm{display:inline-block;overflow:hidden;padding-bottom:.08em}
-.wm>span{display:inline-block}
+.pj-title{font-size:clamp(2.25rem,4vw,3.75rem);font-weight:600;letter-spacing:-.045em;line-height:1}
 .pj-stack{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
+.pj-cta{font-size:.9375rem;padding:.875rem 1.25rem}
 .pj-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,12.5rem),1fr));gap:1.5rem;border-top:1px solid var(--line);padding-top:1.5rem}
 .pj-col{display:flex;flex-direction:column;gap:.5rem}
 .pj-col h4{margin:0;font-family:var(--mono);font-size:.6875rem;font-weight:400;color:var(--muted)}
@@ -182,6 +167,16 @@ a.status:hover{border-color:var(--ink)}
 .kpi{padding:1.375rem;border-radius:1.125rem;background:var(--bg);display:flex;flex-direction:column;gap:.375rem}
 .kpi-v{font-size:clamp(2.25rem,4vw,3.75rem);font-weight:700;letter-spacing:-.06em;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
 .kpi-l{font-size:.875rem;color:var(--muted)}
+/* Wide screens: visual and figures on the left, the story on the right. The story also spans a last 1fr row,
+   so when it runs long only that row grows and the figures stay tight under the visual. */
+@media (min-width:1280px){
+  .panel{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:auto auto auto 1fr;column-gap:clamp(2rem,3.5vw,4rem);row-gap:0;align-items:start}
+  .shot{grid-area:1/1/3/2}
+  .kpis{grid-area:3/1/4/2;margin-top:1.5rem}
+  .pj-head{grid-area:1/2/2/3}
+  .pj-cols{grid-area:2/2/5/3;margin-top:1.5rem;grid-template-columns:minmax(0,1fr);gap:1.25rem}
+  .pj-col p{max-width:38rem}
+}
 
 /* ---------- Pricing ---------- */
 .pricing{display:flex;flex-wrap:wrap;gap:clamp(1rem,2.4vw,3rem);align-items:flex-start}
@@ -422,7 +417,7 @@ details[open]>p{opacity:1;transform:none}
     <li class="step"><span class="step-n" aria-hidden="true">1</span><h3>On se parle</h3><p>20 minutes, gratuites, pour comprendre votre besoin.</p></li>
     <li class="step"><span class="step-n" aria-hidden="true">2</span><h3>Un devis clair</h3><p>Sous 48 h : périmètre, étapes, délais, prix final.</p></li>
     <li class="step"><span class="step-n" aria-hidden="true">3</span><h3>Je construis</h3><p>Une démo à chaque étape clé, pour valider avant d’avancer.</p></li>
-    <li class="step"><span class="step-n" aria-hidden="true">4</span><h3>On met en ligne</h3><p>30 jours de support inclus. Ensuite, abonnement annuel de suivi en option.</p></li>
+    <li class="step"><span class="step-n" aria-hidden="true">4</span><h3>On met en ligne</h3><p>30 jours de garantie&nbsp;: je corrige les éventuels bugs, sans frais. Ensuite, suivi annuel en option.</p></li>
   </ol>
 </section>
 
@@ -494,12 +489,12 @@ details[open]>p{opacity:1;transform:none}
   <div class="about-r">
     <span class="kicker">(03) À propos</span>
     <h2 class="about-big" id="apropos-t">Derrière le code, quelqu’un qui prend le temps de <span class="it">vous écouter</span>.</h2>
-    <p class="about-p">Je m’appelle Romain, je suis développeur freelance à Limoges. Avant de parler technique, j’aime comprendre votre métier et ce dont vous avez vraiment besoin.</p>
+    <p class="about-p">Je m’appelle Romain, développeur depuis 5 ans, installé en freelance à Limoges. Avant de parler technique, j’aime comprendre votre métier et ce dont vous avez vraiment besoin.</p>
     <p class="about-p">Je vous explique les choses simplement, je vous tiens au courant de l’avancement, et on construit votre projet ensemble, étape par étape.</p>
     <ul class="pledges" data-stagger aria-label="Ma façon de travailler">
       <li><b>Des explications claires</b><span>Sans jargon, et toutes vos questions sont les bienvenues.</span></li>
       <li><b>Un seul interlocuteur</b><span>Moi, du premier appel à la mise en ligne.</span></li>
-      <li><b>Un prix qui ne bouge pas</b><span>Le devis validé est le prix final.</span></li>
+      <li><b>Un prix qui ne bouge pas</b><span>Le devis initial est le prix final.</span></li>
     </ul>
     <div class="cta-row">
       <a class="btn btn-dark btn-lg" href="#projets" data-mag>Voir mes projets</a>
@@ -509,41 +504,32 @@ details[open]>p{opacity:1;transform:none}
 
 <section id="projets" class="sec bt" aria-labelledby="projets-t" data-x>
   <div class="sec-head">
-    <div class="sec-title"><span class="kicker">(04) Projets</span><h2 class="h2" id="projets-t">Leurs idées, devenues <span class="it">réalité</span>.</h2></div>
-    <p class="lede">Quatre études de cas, une par savoir-faire. Choisissez-en une.</p>
+    <div class="sec-title"><span class="kicker">(04) Projets</span><h2 class="h2" id="projets-t">Mon idée, devenue <span class="it">produit</span>.</h2></div>
+    <p class="lede">Tenfold, ma propre app Mac&nbsp;: conçue, développée et lancée de A à Z.</p>
   </div>
-  <div class="proj">
-    <div class="tabs" role="tablist" aria-label="Études de cas" data-stagger>
-      <div class="tab-ind" aria-hidden="true"></div>
-      <button class="tab" type="button" role="tab" id="tab-0" aria-selected="true" aria-controls="pj-panel"><span class="tab-n">01</span><span class="tab-txt"><span class="tab-t">Plateforme de réservation</span><span class="tab-c">Web · Produit</span></span><span class="tab-arr" aria-hidden="true">→</span></button>
-      <button class="tab" type="button" role="tab" id="tab-1" aria-selected="false" aria-controls="pj-panel" tabindex="-1"><span class="tab-n">02</span><span class="tab-txt"><span class="tab-t">Application de suivi terrain</span><span class="tab-c">Mobile</span></span><span class="tab-arr" aria-hidden="true">→</span></button>
-      <button class="tab" type="button" role="tab" id="tab-2" aria-selected="false" aria-controls="pj-panel" tabindex="-1"><span class="tab-n">03</span><span class="tab-txt"><span class="tab-t">Refonte e-commerce</span><span class="tab-c">Performance · SEO</span></span><span class="tab-arr" aria-hidden="true">→</span></button>
-      <button class="tab" type="button" role="tab" id="tab-3" aria-selected="false" aria-controls="pj-panel" tabindex="-1"><span class="tab-n">04</span><span class="tab-txt"><span class="tab-t">API de paiement</span><span class="tab-c">API · Sécurité</span></span><span class="tab-arr" aria-hidden="true">→</span></button>
+  <article class="panel" aria-labelledby="pj-t" data-x>
+    <a class="shot" href="https://gettenfold.app/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true" data-tilt>
+      <img src="assets/img/tenfold.webp" alt="" width="1200" height="630" loading="lazy" decoding="async">
+      <span class="shot-tag">gettenfold.app ↗</span>
+    </a>
+    <div class="pj-head">
+      <div class="pj-hl">
+        <span class="pj-meta">App macOS · IA · Mon produit · 2026</span>
+        <h3 class="pj-title" id="pj-t">Tenfold</h3>
+        <span class="pj-stack">macOS natif · Agents IA · Git</span>
+      </div>
+      <a class="btn btn-dark pj-cta" href="https://gettenfold.app/" target="_blank" rel="noopener" data-mag>Découvrir Tenfold <span aria-hidden="true">↗</span><span class="sr"> (nouvel onglet)</span></a>
     </div>
-    <div class="panel" id="pj-panel" role="tabpanel" aria-labelledby="tab-0" data-x>
-      <div class="shot" data-tilt>
-        <div class="shot-img" data-img><span data-pj="shot">capture du projet 01</span></div>
-        <div class="curtain" data-curtain aria-hidden="true"><span data-curtain-n>01</span></div>
-        <span class="shot-tag" data-fx><span data-pj="n">01</span> / 04</span>
-      </div>
-      <div class="pj-head">
-        <div class="pj-hl">
-          <span class="pj-meta" data-fx data-pj="meta">Web · Produit · Startup · 2026</span>
-          <h3 class="pj-title" data-pj-title><span class="wm"><span>Plateforme</span></span> <span class="wm"><span>de</span></span> <span class="wm"><span>réservation</span></span></h3>
-        </div>
-        <span class="pj-stack" data-fx data-pj="stack">React · Node · PostgreSQL</span>
-      </div>
-      <div class="pj-cols">
-        <div class="pj-col" data-fx><h4>Le besoin</h4><p data-pj="pb">Les réservations passaient par téléphone et tableur, avec des doublons chaque semaine.</p></div>
-        <div class="pj-col" data-fx><h4>Ce que j’ai fait</h4><p data-pj="sol">Une plateforme en ligne avec paiement, rappels automatiques et un back-office simple.</p></div>
-        <div class="pj-col" data-fx><h4>Le résultat</h4><p data-pj="res">Les clients réservent seuls, à toute heure.</p></div>
-      </div>
-      <div class="kpis">
-        <div class="kpi" data-fx><span class="kpi-v" data-k data-pj="k1v">×3</span><span class="kpi-l" data-pj="k1l">réservations en ligne</span></div>
-        <div class="kpi" data-fx><span class="kpi-v" data-k data-pj="k2v">0</span><span class="kpi-l" data-pj="k2l">doublon depuis le lancement</span></div>
-      </div>
+    <div class="pj-cols">
+      <div class="pj-col"><h4>Le besoin</h4><p>Le métier de développeur change&nbsp;: on ne code plus seul, on pilote des agents IA. Mais dès qu’ils sont plusieurs en parallèle, on ne sait plus lequel attend une réponse, ce qu’il a modifié, ni qui touche à quel fichier. Et en tant qu’expert, on ne peut pas avancer à l’aveugle.</p></div>
+      <div class="pj-col"><h4>Ce que j’ai fait</h4><p>Un ADE (environnement de développement agentique) complet, conçu pour s’adapter à l’évolution du métier et de l’IA agentique, avec un principe&nbsp;: tout voir. 100&nbsp;% natif macOS et intuitif dès la première minute&nbsp;: tous les agents dans une seule fenêtre, la revue de leur code en direct, une boîte de réception pour ceux qui attendent, cinq dispositions et un worktree Git par agent.</p></div>
+      <div class="pj-col"><h4>Le résultat</h4><p>On délègue sans jamais perdre le fil. Même quand on passe à autre chose, Tenfold se replie dans l’encoche du Mac et garde chaque agent sous les yeux. La v1, sortie le 8&nbsp;novembre 2026, fonctionne avec Claude Code&nbsp;; OpenCode, Codex et d’autres arrivent bientôt.</p></div>
     </div>
-  </div>
+    <div class="kpis">
+      <div class="kpi"><span class="kpi-v">×10</span><span class="kpi-l">agents IA, côte à côte</span></div>
+      <div class="kpi"><span class="kpi-v">1</span><span class="kpi-l">coup d’œil à l’encoche pour suivre tous vos agents</span></div>
+    </div>
+  </article>
 </section>
 
 <section id="faq" class="sec bt faq" aria-labelledby="faq-t" data-x>
@@ -553,7 +539,7 @@ details[open]>p{opacity:1;transform:none}
   </div>
   <div class="faq-list">
     <details><summary><span>À qui appartiendra mon site ou mon application&nbsp;?</span><span class="plus" aria-hidden="true">+</span></summary><p>À vous, entièrement. Une fois le projet réglé, le code, le design et les contenus vous appartiennent. Le nom de domaine et l’hébergement sont à votre nom&nbsp;: vous restez libre de changer de prestataire quand vous le souhaitez.</p></details>
-    <details><summary><span>Et après la mise en ligne&nbsp;?</span><span class="plus" aria-hidden="true">+</span></summary><p>30 jours de support sont inclus&nbsp;: corrections, petits ajustements, réponses à vos questions. Ensuite, un abonnement annuel optionnel prend le relais pour les mises à jour, la sécurité et les sauvegardes. Sans abonnement, j’interviens ponctuellement, sur devis.</p></details>
+    <details><summary><span>Et après la mise en ligne&nbsp;?</span><span class="plus" aria-hidden="true">+</span></summary><p>30 jours de garantie sont inclus&nbsp;: je corrige sans frais les éventuels bugs ou écarts par rapport au devis, et je réponds à vos questions. Les nouvelles pages ou fonctionnalités n’en font pas partie&nbsp;: elles font l’objet d’un devis à part. Ensuite, un abonnement annuel optionnel prend le relais pour les mises à jour, la sécurité et les sauvegardes. Sans abonnement, j’interviens ponctuellement, sur devis.</p></details>
     <details><summary><span>Pourrai-je modifier le contenu moi-même&nbsp;?</span><span class="plus" aria-hidden="true">+</span></summary><p>Oui. Textes, images, produits, actualités&nbsp;: je mets en place une interface simple pour les gérer sans toucher au code, et je vous montre comment l’utiliser.</p></details>
     <details><summary><span>Et si je change d’avis en cours de route&nbsp;?</span><span class="plus" aria-hidden="true">+</span></summary><p>C’est prévu. Vous voyez une démo à chaque étape clé, donc on ajuste tôt. Si vous souhaitez ajouter une fonctionnalité hors devis, je la chiffre à part et rien n’est lancé sans votre accord.</p></details>
     <details><summary><span>Qui s’occupe de l’hébergement et du nom de domaine&nbsp;?</span><span class="plus" aria-hidden="true">+</span></summary><p>Je m’en charge si vous le souhaitez&nbsp;: choix de la solution, configuration et mise en ligne. Les abonnements sont enregistrés à votre nom et vous les réglez directement auprès du fournisseur.</p></details>

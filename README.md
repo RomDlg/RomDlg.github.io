@@ -26,8 +26,7 @@ In that case, update the absolute URLs in `index.html` (canonical, `og:*`, JSON-
 | --- | --- |
 | Contact email | Search and replace `contact@romaindelage.fr` in `index.html` and `assets/js/main.js` |
 | "Réserver un appel" link | `data-book` link in `index.html` (currently a `mailto:`; paste a Cal.com or Calendly URL there) |
-| Case studies | `PROJECTS` in `main.js`; set `img: 'assets/img/projet-1.webp'` to show a screenshot (16:8 ratio) |
-| Tab labels | The four `.tab` buttons in `index.html` |
+| Case study (Tenfold) | The `#projets` section in `index.html`; visual in `assets/img/tenfold.webp` (1200×630) |
 | Prices and durations | `SERVICES` in `main.js`, plus the "dès … €" labels in `index.html` |
 | Portrait | Replace the `.portrait` placeholder (see the HTML comment above it) |
 
