@@ -75,7 +75,7 @@ h1,h2,h3,p{margin:0}
 .contact :focus-visible{outline-color:currentColor}
 input::placeholder{color:var(--muted-2)}
 a,button{-webkit-tap-highlight-color:transparent;transition:background-color .3s ease,color .3s ease,border-color .3s ease,opacity .3s ease,transform .35s var(--ease)}
-a:active,button:active{scale:.97}
+a:active,button:active:not(.svc-btn){scale:.97}
 .sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .skip{position:fixed;left:1rem;top:-3.75rem;z-index:100;padding:.625rem 1rem;border-radius:999px;background:var(--ink);color:var(--bg);font-size:.875rem}
 .skip:focus{top:.75rem}
